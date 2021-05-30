@@ -1,0 +1,41 @@
+body {
+    font-family: "Helvetica", "sans-serif";
+    background-color: rgba(11, 211, 184, 0.158);
+}
+
+h1 {
+    font-size: 30px;
+}
+
+.oculto {
+    display: none;
+}
+
+.circulo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 250px);
+    grid-gap: 25px;
+    grid-template-rows: auto;
+}
+
+#rojo {
+    background: #d61919;
+}
+
+#azul {
+    background: #201db9;
+}
+
+#amarillo {
+    background: #dde014;
+}
+
+#verde {
+    background: #0fc52d;
+}
