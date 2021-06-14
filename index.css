@@ -23,7 +23,6 @@ h1 {
     height: 200px;
     border-radius: 50%;
     margin: 25px 25px;
-    opacity: 0.5;
 }
 
 .registros {
@@ -50,16 +49,20 @@ h1 {
 
 #rojo {
     background: #d61919;
+    opacity: 0.5;
 }
 
 #azul {
     background: #201db9;
+    opacity: 0.5;
 }
 
 #amarillo {
     background: #dde014;
+    opacity: 0.5;
 }
 
 #verde {
     background: #0fc52d;
+    opacity: 0.5;
 }
