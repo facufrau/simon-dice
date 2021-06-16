@@ -9,11 +9,11 @@ $botonEmpezar.onclick = comenzarJuego;
 
 function jugarRonda(continuaRonda) {
     if (continuaRonda) {
-        turnoComputadora(secuenciaComputadora);
+        //turnoComputadora(secuenciaComputadora);
         turnoUsuario(secuenciaUsuario, secuenciaComputadora);
     }
     else {
-        console.log('Juego finalizado');
+        //console.log('Juego finalizado');
     }
 
     

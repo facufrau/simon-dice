@@ -7,6 +7,7 @@ function resaltarElemento(elemento) {
     elemento.style.opacity = 1.0;
     setTimeout(function(){elemento.style.opacity = 0.5}, 800);
 }
+
 function compararJugadas(secuencia1, secuencia2) {
     if (JSON.stringify(secuencia1) === JSON.stringify(secuencia2)) {
         return true;
@@ -15,6 +16,7 @@ function compararJugadas(secuencia1, secuencia2) {
         return false;
     }
 }
+
 function turnoComputadora(secuenciaComputadora) {
     $circulos = document.querySelectorAll('.circulo');
     let elementoBoton = seleccionarBotonAleatorio($circulos);
@@ -28,10 +30,14 @@ function turnoComputadora(secuenciaComputadora) {
 
 function turnoUsuario(secuenciaUsuario, secuenciaComputadora) {
     $circulos = document.querySelectorAll('.circulo');
-    $circulos.forEach(elemento => {
-        elemento.addEventListener('click', function (event) 
+    $circulos.forEach(circulo =>
+        {
+            circulo.onclick = () => 
             {
-        secuenciaUsuario.push(elemento.innerText -  1);
-            });
-        })
+            secuenciaUsuario.push(circulo.innerText -  1);
+            resaltarElemento(circulo);
+            console.log(secuenciaUsuario);
+            }
+        }
+    )
 }
