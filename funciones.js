@@ -8,6 +8,11 @@ function resaltarElemento(elemento) {
     setTimeout(function(){elemento.style.opacity = 0.5}, 800);
 }
 
+function resaltarElementoClickeado(elemento) {
+    elemento.style.opacity = 1.0;
+    setTimeout(function(){elemento.style.opacity = 0.5}, 200);
+}
+
 function compararJugadas(secuencia1, secuencia2) {
     if (JSON.stringify(secuencia1) === JSON.stringify(secuencia2)) {
         return true;
@@ -34,9 +39,15 @@ function turnoUsuario(secuenciaUsuario, secuenciaComputadora) {
         {
             circulo.onclick = () => 
             {
-            secuenciaUsuario.push(circulo.innerText -  1);
-            resaltarElemento(circulo);
-            console.log(secuenciaUsuario);
+            secuenciaUsuario.push(Number(circulo.innerText -  1));
+            resaltarElementoClickeado(circulo);
+            if (secuenciaUsuario.length === secuenciaComputadora.length) {
+                if (compararJugadas(secuenciaUsuario, secuenciaComputadora)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } 
             }
         }
     )

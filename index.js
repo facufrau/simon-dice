@@ -2,30 +2,27 @@ let puntaje = 0;
 let puntajeMaximo = 0;
 let secuenciaComputadora = [];
 let secuenciaUsuario = [];
-let activo = false;
 
 const $botonEmpezar = document.querySelector('#empezar');
-$botonEmpezar.onclick = comenzarJuego;
+$botonEmpezar.onclick = jugar;
 
-function jugarRonda(continuaRonda) {
-    if (continuaRonda) {
-        //turnoComputadora(secuenciaComputadora);
-        turnoUsuario(secuenciaUsuario, secuenciaComputadora);
-    }
-    else {
-        //console.log('Juego finalizado');
-    }
-
-    
-}
-
-function comenzarJuego() {
+function jugar() {
+    secuenciaUsuario = [];
+    secuenciaComputadora = [];
+    puntaje = 0;
+    let usuarioAcerto;
     let continuaRonda = true;
-    for (let i = 1; i <= 6; i++){
-        if (i === 6) {
+
+    while (continuaRonda) {
+        turnoComputadora(secuenciaComputadora);
+        usuarioAcerto = turnoUsuario(secuenciaUsuario, secuenciaComputadora);
+        console.log(usuarioAcerto)
+        if (usuarioAcerto) {
+            puntaje++;
+        }
+        else {
             continuaRonda = false;
         }
-        jugarRonda(continuaRonda);
     }
-    
-}
+
+    }
