@@ -13,17 +13,17 @@ function resaltarElementoClickeado(elemento) {
     setTimeout(function(){elemento.style.opacity = 0.5}, 200);
 }
 
-function compararJugadas(secuencia1, secuencia2) {
-    if (JSON.stringify(secuencia1) === JSON.stringify(secuencia2)) {
-        return true;
+function compararJugadas(secuenciaComputadora, secuenciaUsuario) {
+    for(let i = 0; i < secuenciaComputadora.length; i++) {
+        if (secuenciaComputadora[i] !== secuenciaUsuario[i]) {
+            return false;
+        }
     }
-    else {
-        return false;
-    }
+    return true;
 }
 
 function turnoComputadora(secuenciaComputadora) {
-    $circulos = document.querySelectorAll('.circulo');
+    const $circulos = document.querySelectorAll('.circulo');
     let elementoBoton = seleccionarBotonAleatorio($circulos);
     secuenciaComputadora.push(Number(elementoBoton.innerText) - 1);
         
@@ -33,22 +33,22 @@ function turnoComputadora(secuenciaComputadora) {
     });
 }
 
-function turnoUsuario(secuenciaUsuario, secuenciaComputadora) {
-    $circulos = document.querySelectorAll('.circulo');
-    $circulos.forEach(circulo =>
-        {
-            circulo.onclick = () => 
-            {
-            secuenciaUsuario.push(Number(circulo.innerText -  1));
-            resaltarElementoClickeado(circulo);
-            if (secuenciaUsuario.length === secuenciaComputadora.length) {
-                if (compararJugadas(secuenciaUsuario, secuenciaComputadora)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } 
-            }
-        }
-    )
+function turnoUsuario(e) {
+    let $circulo = e.target;
+    console.log($circulo.innerText);
+
+    resaltarElementoClickeado($circulo);
+    secuenciaUsuario.push(Number(circulo.innerText -  1));
+    
+    return compararJugadas(secuenciaComputadora, secuenciaUsuario);
+}
+
+function activarInputUsuario(){
+    const $circulos = document.querySelectorAll('.circulo');
+    $circulos.forEach(circulo => {circulo.onclick = turnoUsuario})
+}
+
+function desactivarInputUsuario() {
+    const $circulos = document.querySelectorAll('.circulo');
+    $circulos.forEach(circulo => {circulo.onclick = function(){console.log('Input bloqueado!')}})
 }
