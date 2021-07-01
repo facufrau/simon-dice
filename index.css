@@ -47,6 +47,10 @@ h1 {
     grid-template-rows: auto;
 }
 
+.circulo {
+    transition: opacity 500ms;
+}
+
 #rojo {
     background: #d61919;
     opacity: 0.5;
