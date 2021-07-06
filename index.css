@@ -49,6 +49,7 @@ h1 {
 
 .circulo {
     transition: opacity 500ms;
+    border: solid black;
 }
 
 #rojo {
