@@ -16,10 +16,7 @@ function jugar() {
 function jugarRonda() {
     secuenciaUsuario = [];
     desactivarInputUsuario();
-    turnoComputadora(secuenciaComputadora);
-
-    activarInputUsuario();
-
+    turnoComputadora(secuenciaComputadora, activarInputUsuario);
 }
 
 function seleccionarBotonAleatorio(listaBotones) {
@@ -46,7 +43,7 @@ function compararJugadas(secuenciaComputadora, secuenciaUsuario) {
     return true;
 }
 
-function turnoComputadora(secuenciaComputadora) {
+function turnoComputadora(secuenciaComputadora, funcionFinRondaCallback) {
     const $circulos = document.querySelectorAll('.circulo');
     let elementoBoton = seleccionarBotonAleatorio($circulos);
     secuenciaComputadora.push(Number(elementoBoton.innerText) - 1);
@@ -55,6 +52,8 @@ function turnoComputadora(secuenciaComputadora) {
         let elementoAResaltar = $circulos[indiceElemento];
         setTimeout(function(){resaltarElemento(elementoAResaltar)}, contador * 1000);
     });
+    let tiempoEnFinalizarTurnoComputadora = (secuenciaComputadora.length) * 1000;
+    setTimeout(funcionFinRondaCallback, tiempoEnFinalizarTurnoComputadora);
 }
 
 function turnoUsuario(e) {
