@@ -1,22 +1,25 @@
-let puntaje = 0;
-let puntajeMaximo = 0;
+let $puntaje = document.querySelector('#puntaje');
+let $puntajeMaximo = document.querySelector('#puntaje-max');
 let secuenciaComputadora = [];
 let secuenciaUsuario = [];
 
 const $botonEmpezar = document.querySelector('#empezar');
+const $botonReiniciar = document.querySelector('#reiniciar');
 $botonEmpezar.onclick = jugar;
+$botonReiniciar.onclick = reiniciarEstado;
 
 function jugar() {
-    for (let i = 1; i <= 5; i++) {
-        jugarRonda();
-    }
+    reiniciarEstado();
+    jugarRonda();
 }
 
 function jugarRonda() {
+    secuenciaUsuario = [];
     desactivarInputUsuario();
     turnoComputadora(secuenciaComputadora);
 
-    console.log(activarInputUsuario());
+    activarInputUsuario();
+
 }
 
 function seleccionarBotonAleatorio(listaBotones) {
@@ -26,16 +29,16 @@ function seleccionarBotonAleatorio(listaBotones) {
 
 function resaltarElemento(elemento) {
     elemento.style.opacity = 1.0;
-    setTimeout(function(){elemento.style.opacity = 0.5}, 800);
+    setTimeout(function(){elemento.style.opacity = 0.5}, 500);
 }
 
 function resaltarElementoClickeado(elemento) {
     elemento.style.opacity = 1.0;
-    setTimeout(function(){elemento.style.opacity = 0.5}, 200);
+    setTimeout(function(){elemento.style.opacity = 0.5}, 500);
 }
 
 function compararJugadas(secuenciaComputadora, secuenciaUsuario) {
-    for(let i = 0; i < secuenciaComputadora.length; i++) {
+    for(let i = 0; i < secuenciaUsuario.length; i++) {
         if (secuenciaComputadora[i] !== secuenciaUsuario[i]) {
             return false;
         }
@@ -56,12 +59,20 @@ function turnoComputadora(secuenciaComputadora) {
 
 function turnoUsuario(e) {
     let $circulo = e.target;
-    console.log($circulo.innerText);
-
-    resaltarElementoClickeado($circulo);
-    secuenciaUsuario.push(Number(circulo.innerText -  1));
+    let usuarioAcerto;
     
-    return compararJugadas(secuenciaComputadora, secuenciaUsuario);
+    resaltarElementoClickeado($circulo);
+    secuenciaUsuario.push(Number($circulo.innerText -  1));
+    
+    usuarioAcerto = compararJugadas(secuenciaComputadora, secuenciaUsuario);
+    if (usuarioAcerto === false) {
+        terminarJuego();
+    }
+    else if (usuarioAcerto && (secuenciaComputadora.length === secuenciaUsuario.length)) {
+        $puntaje.innerText++;
+        setTimeout(function(){jugarRonda()}, 1000);
+    }
+
 }
 
 function activarInputUsuario(){
@@ -72,4 +83,19 @@ function activarInputUsuario(){
 function desactivarInputUsuario() {
     const $circulos = document.querySelectorAll('.circulo');
     $circulos.forEach(circulo => {circulo.onclick = function(){console.log('Input bloqueado!')}})
+}
+
+function reiniciarEstado() {
+    desactivarInputUsuario();
+    $puntaje.innerText = 0;
+    secuenciaComputadora = [];
+    secuenciaUsuario = [];
+}
+
+function terminarJuego() {
+    if ($puntaje.innerText > $puntajeMaximo.innerText) {
+        $puntajeMaximo.innerText = $puntaje.innerText;
+    }
+    reiniciarEstado();
+    alert('Perdiste, fin del juego. Presioná empezar para jugar de nuevo.');
 }
