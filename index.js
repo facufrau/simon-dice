@@ -69,7 +69,7 @@ function turnoUsuario(e) {
     }
     else if (usuarioAcerto && (secuenciaComputadora.length === secuenciaUsuario.length)) {
         $puntaje.innerText++;
-        setTimeout(function(){jugarRonda()}, 1000);
+        setTimeout(jugarRonda, 1000);
     }
 
 }
