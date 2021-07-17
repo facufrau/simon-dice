@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/facufrau/simon-dice/issues"
   },
-  "homepage": "https://github.com/facufrau/simon-dice#readme"
+  "homepage": "https://github.com/facufrau/simon-dice#readme",
+  "dependencies": {
+    "bootstrap": "^5.0.2"
+  }
 }
