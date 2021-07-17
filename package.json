@@ -1,0 +1,19 @@
+{
+  "name": "simon-dice",
+  "version": "1.0.0",
+  "description": "Juego de simon dice para clase 10 r/argentinaprograma",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facufrau/simon-dice.git"
+  },
+  "author": "facufrau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facufrau/simon-dice/issues"
+  },
+  "homepage": "https://github.com/facufrau/simon-dice#readme"
+}
